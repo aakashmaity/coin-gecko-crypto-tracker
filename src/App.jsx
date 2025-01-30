@@ -1,15 +1,17 @@
-
 import './App.css'
+import Banner from './components/Banner/Banner'
+import CoinTable from './components/CoinTable/CoinTable'
+import Navbar from './components/Navbar/Navbar'
 
 
 function App() {
 
+
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-      <button className="btn w-64 rounded-full">Button</button>
+      <Navbar/>
+      <Banner/>
+      <CoinTable/>
     </>
   )
 }
