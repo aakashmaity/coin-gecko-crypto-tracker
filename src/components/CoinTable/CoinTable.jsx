@@ -1,25 +1,22 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { fetchCoinData } from "../../services/fetchCoinData"
 import { useQuery } from "@tanstack/react-query";
 
-function CoinTable() {
+function CoinTable({ currency }) {
 
     const [page, setPage] = useState(1);
-    const { data, status, error } = useQuery({
-        queryKey: ['coins', page],
-        queryFn: () => fetchCoinData(page, 'usd'),
+
+    // If your query function depends on a variable, include it in your query key
+    // query keys uniquely describe the data they are fetching whenever any change happens
+
+    const { data, status, error , isLoading} = useQuery({
+        queryKey: ['coins', page, currency],   
+        queryFn: () => fetchCoinData(page, currency),
         // retry: 2,
         retryDelay: 1000,
         staleTime: 1000 * 60 * 2  // how long you're expecting your data is fresh or not updated anything till 2 minutes 
     })
 
-    useEffect(() => {
-        // console.log(data)
-    }, [data])
-
-    if (status === 'pending') {
-        return <span>Loading...</span>
-    }
 
     if (status === 'error') {
         return <span>Error: {error.message}</span>
@@ -28,7 +25,7 @@ function CoinTable() {
 
     return (
         <div className="my-5 flex flex-col items-center justify-center gap-5 w-[80vw] mx-auto">
-
+            {currency}
             <div className="w-full bg-yellow-300 text-black flex py-4 px-2 font-semibold items-center justify-center">
                 <div className="basis-[35%]">Coin</div>
                 <div className="basis-[25%]">Price</div>
@@ -38,6 +35,7 @@ function CoinTable() {
 
 
             <div className="flex flex-col w-[80vw] mx-auto">
+                {isLoading && <div>Loading...</div>}
                 {data && data.map((coin) => {
                     return (
                         <div key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 items-center justify-between">
