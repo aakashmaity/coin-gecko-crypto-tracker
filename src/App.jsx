@@ -8,14 +8,9 @@ import Navbar from './components/Navbar/Navbar'
 function App() {
 
   const [currency, setCurrency] = useState('usd');
-
-  // useEffect(() => {
-  //   console.log("Currency App:",currency)
-  // },[currency])
   
   return (
     <>
-      {currency}
       <Navbar setCurrency={setCurrency}/>
       <Banner/>
       <CoinTable currency={currency}/>

@@ -24,7 +24,6 @@ function CoinTable({ currency }) {
 
     return (
         <div className="my-5 flex flex-col items-center justify-center gap-5 w-[80vw] mx-auto">
-            {currency}
             <div className="w-full bg-yellow-300 text-black flex py-4 px-2 font-semibold items-center justify-center">
                 <div className="basis-[35%]">Coin</div>
                 <div className="basis-[25%]">Price</div>
