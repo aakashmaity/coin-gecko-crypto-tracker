@@ -6,8 +6,7 @@ function CoinTable({ currency }) {
 
     const [page, setPage] = useState(1);
 
-    // If your query function depends on a variable, include it in your query key
-    // query keys uniquely describe the data they are fetching whenever any change happens
+    // ['coins', page, currency,....] based on any of these parameters changes queryFn function will be called
 
     const { data, status, error , isLoading} = useQuery({
         queryKey: ['coins', page, currency],   
