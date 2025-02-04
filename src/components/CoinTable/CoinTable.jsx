@@ -1,21 +1,24 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { fetchCoinData } from "../../services/fetchCoinData"
 import { useQuery } from "@tanstack/react-query";
+import { CurrencyContext } from "../../context/CurrencyContext";
 
-function CoinTable({ currency }) {
+function CoinTable() {
 
     const [page, setPage] = useState(1);
-
-    // ['coins', page, currency,....] based on any of these parameters changes queryFn function will be called
+    const { currency } = useContext(CurrencyContext);
+    
 
     const { data, status, error , isLoading} = useQuery({
         queryKey: ['coins', page, currency],   
         queryFn: () => fetchCoinData(page, currency),
         // retry: 2,
         retryDelay: 1000,
-        staleTime: 1000 * 60 * 2  // how long you're expecting your data is fresh or not updated anything till 2 minutes 
+        staleTime: 1000 * 60 * 2  
     })
-
+    
+    // ['coins', page, currency,....] based on any of these parameters changes queryFn function will be called
+    // stealTime : how long you're expecting your data is fresh or not updated anything till 2 minutes 
 
     if (status === 'error') {
         return <span>Error: {error.message}</span>
