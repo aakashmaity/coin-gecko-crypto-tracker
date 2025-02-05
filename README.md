@@ -1,6 +1,6 @@
 # React + Vite
 
-This is a Test project to understand different state management libraries
+This is a Test project to learning purpose only
 
 Currently, two official plugins are available:
 
@@ -8,7 +8,15 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
+Intrtoduction of "useQuery"
+
 State management
 
-    1. Introdusing react Context Api
+    1. Introducing react Context Api
     2. Using Zustand
+
+To understand "useParams"
+
+Add Layout accross all the pages
+
+

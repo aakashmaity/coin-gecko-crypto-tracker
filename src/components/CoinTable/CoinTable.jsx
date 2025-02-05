@@ -3,6 +3,7 @@ import { fetchCoinData } from "../../services/fetchCoinData"
 import { useQuery } from "@tanstack/react-query";
 // import { CurrencyContext } from "../../context/CurrencyContext";
 import currencyStore from "../../state/store"
+import { useNavigate } from "react-router-dom";
 
 function CoinTable() {
 
@@ -10,7 +11,7 @@ function CoinTable() {
     const { currency } = currencyStore();
 
 
-
+    const navigate = useNavigate()
     const [page, setPage] = useState(1);
     const { data, status, error , isLoading} = useQuery({
         queryKey: ['coins', page, currency],   
@@ -22,6 +23,10 @@ function CoinTable() {
     
     // ['coins', page, currency,....] based on any of these parameters changes queryFn function will be called
     // stealTime : how long you're expecting your data is fresh or not updated anything till 2 minutes 
+
+    function handleCoinRedirect(id) {
+        navigate(`/details/${id}`)
+    }
 
     if (status === 'error') {
         return <span>Error: {error.message}</span>
@@ -42,7 +47,7 @@ function CoinTable() {
                 {isLoading && <div>Loading...</div>}
                 {data && data.map((coin) => {
                     return (
-                        <div key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 items-center justify-between">
+                        <div onClick={() =>handleCoinRedirect(coin.id)} key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 items-center justify-between">
                             <div className="flex items-center justify-start gap-3 basis-[35%]">
                                 <div className="w-[5rem] h-[5rem]">
                                     <img src={coin.image} className="w-full h-full" />

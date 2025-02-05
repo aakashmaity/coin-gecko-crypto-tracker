@@ -1,16 +1,19 @@
 // import { useState } from 'react';
 import './App.css';
+import Routing from './components/Routing/Routing';
 // import { CurrencyContext } from './context/CurrencyContext';
-import Home from './pages/Home';
 
 
 function App() {
   // const [currency, setCurrency] = useState('usd')
 
   return (
-    // <CurrencyContext.Provider value={{ currency, setCurrency}}>
-      <Home />
-    // </CurrencyContext.Provider>
+    <>
+    {/* <CurrencyContext.Provider value={{ currency, setCurrency}}>
+      <Home /> */}
+      <Routing/>
+    {/* </CurrencyContext.Provider> */}
+    </>
   )
 }
 
