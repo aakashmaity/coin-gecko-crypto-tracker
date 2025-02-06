@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 // import { CurrencyContext } from "../../context/CurrencyContext";
 import currencyStore from "../../state/store"
 import { useNavigate } from "react-router-dom";
+import PageLoader from "../PageLoader/PageLoader"
 
 function CoinTable() {
 
@@ -44,7 +45,7 @@ function CoinTable() {
 
 
             <div className="flex flex-col w-[80vw] mx-auto">
-                {isLoading && <div>Loading...</div>}
+                {isLoading && <PageLoader/>}
                 {data && data.map((coin) => {
                     return (
                         <div onClick={() =>handleCoinRedirect(coin.id)} key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 items-center justify-between">

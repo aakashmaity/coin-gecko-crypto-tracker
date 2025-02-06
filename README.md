@@ -8,15 +8,15 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
-Intrtoduction of "useQuery"
+    1. Intrtoduction of "useQuery"
+    2. State management
 
-State management
+        1. Introducing react Context Api
+        2. Using Zustand
 
-    1. Introducing react Context Api
-    2. Using Zustand
-
-To understand "useParams"
-
-Add Layout accross all the pages
+    3. To understand "useParams"
+    4. Add Layout accross all the pages
+    5. Lazy loading
+    6. Added react-content-loader 
 
 
