@@ -15,8 +15,9 @@ Currently, two official plugins are available:
         2. Using Zustand
 
     3. To understand "useParams"
-    4. Add Layout accross all the pages
+    4. Added Layout accross all the pages 
     5. Lazy loading
-    6. Added react-content-loader 
+    6. Implement page loader using  react-content-loader
+    7. Implement react-error-boundary 
 
 
