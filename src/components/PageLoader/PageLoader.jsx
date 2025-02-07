@@ -1,6 +1,6 @@
 import ContentLoader from "react-content-loader";
 
-const MyLoader = () => (
+const PageLoader = () => (
   <div className="h-[100vh] flex justify-center items-start">
     <ContentLoader
       height={140}
@@ -17,4 +17,4 @@ const MyLoader = () => (
   </div>
 )
 
-export default MyLoader
+export default PageLoader

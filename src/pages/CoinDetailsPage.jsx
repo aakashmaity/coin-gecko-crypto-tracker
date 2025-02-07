@@ -4,6 +4,7 @@ import { fetchCoinDetails } from "../services/fetchCoinDetails"
 import parse from 'html-react-parser'
 import currencyStore from "../state/store"
 import PageLoader from "../components/PageLoader/PageLoader"
+import CoinInfoContainer from "../components/CoinInfo/CoinInfoContainer"
 
 
 function CoinDetailsPage() {
@@ -18,6 +19,8 @@ function CoinDetailsPage() {
         retryDelay: 1000 * 60 * 2,
         staleTime: 1000 * 60 * 2,
     })
+
+    console.log("Coin Details:",coin)
 
     if(isLoading){
         return <PageLoader />
@@ -61,9 +64,8 @@ function CoinDetailsPage() {
             </div>
 
 
-        
             <div className="md:w-2/3 w-full p-6">
-                Coin Info.
+                <CoinInfoContainer coinId={coin?.id}/>
             </div>
         </div>
     )
