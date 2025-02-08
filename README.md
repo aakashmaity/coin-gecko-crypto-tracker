@@ -1,6 +1,7 @@
-# React + Vite
+# Crypto Tracket
 
-This is a Test project to learning purpose only
+(React + vite)
+This is a Test project to learning purpose only. 
 
 Currently, two official plugins are available:
 
@@ -24,3 +25,4 @@ Currently, two official plugins are available:
 ```
 
 
+Deploy to vercel [click here]("https://coin-gecko-crypto-tracker-nu.vercel.app")
