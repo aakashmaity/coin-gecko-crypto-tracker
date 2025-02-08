@@ -11,12 +11,12 @@ function CoinInfo({ historicData, days, setDays, setCoinInterval, currency }) {
     const daySelected = e.target.value
 
     if(daySelected == 1){
-      setCoinInterval('')
+      setCoinInterval?.('')
     } else {
-      setCoinInterval('daily')
+      setCoinInterval?.('daily')
     }
     
-    setDays(daySelected)
+    setDays?.(daySelected)
   }
 
 
@@ -33,14 +33,14 @@ function CoinInfo({ historicData, days, setDays, setCoinInterval, currency }) {
           data={{
             labels: historicData.prices.map(coinPrice => {
               let date = new Date(coinPrice[0]);  // 
-              let time = date.getHours() > 12 ? `${date.getHours() - 12}:${date.getMinutes()} PM` : `${date.getHours()}:${date.getMinutes()} AM`
-              return days == 1 ? time : date.toLocaleDateString()
+              let time = date?.getHours() > 12 ? `${date?.getHours() - 12}:${date?.getMinutes()} PM` : `${date?.getHours()}:${date?.getMinutes()} AM`
+              return days == 1 ? time : date?.toLocaleDateString()
             }),
 
             datasets: [
               {
                 label: `Price (Past ${days} ${days == 1 ? 'day' : 'days'}) in ${currency?.toUpperCase()}`,
-                data: historicData.prices.map(coinPrice => coinPrice[1])
+                data: historicData?.prices.map(coinPrice => coinPrice[1])
               }
             ],
           }}

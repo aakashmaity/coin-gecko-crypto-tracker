@@ -2,7 +2,8 @@
 // import { CurrencyContext } from "../../context/CurrencyContext"
 
 import { useNavigate } from "react-router-dom";
-import currencyStore from "../../state/store"
+import currencyStore from "../../state/currencyStore";
+
 
 function Navbar() {
 

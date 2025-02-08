@@ -2,9 +2,9 @@ import { useContext, useState } from "react"
 import { fetchCoinData } from "../../services/fetchCoinData"
 import { useQuery } from "@tanstack/react-query";
 // import { CurrencyContext } from "../../context/CurrencyContext";
-import currencyStore from "../../state/store"
 import { useNavigate } from "react-router-dom";
 import PageLoader from "../PageLoader/PageLoader"
+import currencyStore from "../../state/currencyStore";
 
 function CoinTable() {
 
