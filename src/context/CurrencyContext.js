@@ -1,3 +1,3 @@
-import { createContext } from "react";
+// import { createContext } from "react";
 
-export const CurrencyContext = createContext(); // create a context object
+// export const CurrencyContext = createContext(); // create a context object

@@ -1,39 +1,19 @@
 import { Chart, registerables } from "chart.js"
 import Alert from "../Alert/Alert"
 import { Line } from "react-chartjs-2"
+import { chartDays } from "../../helpers/constants"
 
 function CoinInfo({ historicData, days, setDays, setCoinInterval, currency }) {
 
   Chart.register(...registerables)
-
-  const chartDays = [
-    {
-      label: '24 hours',
-      value: 1
-    },
-    {
-      label: '7 days',
-      value: 7
-    },
-    {
-      label: '30 days',
-      value: 30
-    },
-    {
-      label: '3 months',
-      value: 90
-    },
-    {
-      label: '1 year',
-      value: 365
-    },
-  ]
 
   function handleDayChange(e){
     const daySelected = e.target.value
 
     if(daySelected == 1){
       setCoinInterval('')
+    } else {
+      setCoinInterval('daily')
     }
     
     setDays(daySelected)
@@ -46,7 +26,7 @@ function CoinInfo({ historicData, days, setDays, setCoinInterval, currency }) {
 
 
   return (
-    <div className="flex flex-col item-center justify-center mt-6 p-6 w-full md:w-3/4">
+    <div className="flex flex-col items-center justify-center mt-6 p-6 w-full ">
 
       <div className="h-[500px] w-full">
         <Line
@@ -59,7 +39,7 @@ function CoinInfo({ historicData, days, setDays, setCoinInterval, currency }) {
 
             datasets: [
               {
-                label: `Price (Past ${days} ${days == 1 ? 'day' : 'days'}) in ${currency.toUpperCase()}`,
+                label: `Price (Past ${days} ${days == 1 ? 'day' : 'days'}) in ${currency?.toUpperCase()}`,
                 data: historicData.prices.map(coinPrice => coinPrice[1])
               }
             ],
@@ -81,6 +61,7 @@ function CoinInfo({ historicData, days, setDays, setCoinInterval, currency }) {
         <select 
           className="select select-primary w-full max-w-xs"
           onChange={handleDayChange}
+          value={days}
         >
           {chartDays.map((day, index) => (
             <option

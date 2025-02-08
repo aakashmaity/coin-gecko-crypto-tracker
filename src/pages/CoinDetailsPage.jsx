@@ -12,15 +12,13 @@ function CoinDetailsPage() {
     const { coinId } = useParams()
     const { currency } = currencyStore()
 
-    const { data: coin, status, error, isLoading } = useQuery({
+    const { data: coin, error, isLoading } = useQuery({
         queryKey: ['coins', coinId],
         queryFn: () => fetchCoinDetails(coinId),
         // retry: 2,
         retryDelay: 1000 * 60 * 2,
         staleTime: 1000 * 60 * 2,
     })
-
-    console.log("Coin Details:",coin)
 
     if(isLoading){
         return <PageLoader />

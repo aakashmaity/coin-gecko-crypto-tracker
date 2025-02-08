@@ -11,9 +11,8 @@ Currently, two official plugins are available:
 ```
 1. Intrtoduction of "useQuery"
 2. State management
-
-    1. Introducing react Context Api
-    2. Using Zustand
+    Introducing react Context Api
+    Using Zustand
 
 3. To understand "useParams"
 4. Added Layout accross all the pages 
@@ -21,6 +20,7 @@ Currently, two official plugins are available:
 6. Implement page loader using  react-content-loader
 7. Implement react-error-boundary 
 8. Added charts using chart.js
+9. Cleanup: Added custom re-usable hooks
 ```
 
 
