@@ -1,28 +1,20 @@
-# Crypto Tracket
+# Crypto Currency Price Tracker App
 
-(React + vite)
-This is a Test project to learning purpose only. 
+![Deployed URL]("https://coin-gecko-crypto-tracker-nu.vercel.app")
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-
-```
-1. Intrtoduction of "useQuery"
-2. State management
-    Introducing react Context Api
-    Using Zustand
-
-3. To understand "useParams"
-4. Added Layout accross all the pages 
-5. Lazy loading
-6. Implement page loader using  react-content-loader
-7. Implement react-error-boundary 
-8. Added charts using chart.js
-9. Cleanup: Added custom re-usable hooks
-```
+- Reusable components made using presenter container pattern
+- Added Layout accross all the pages
+- Custom hooks implemented
+- State management done by Zustand
+- Consuming CoinGecko Free API
+- API requests are cached using React query
+- Suspence and error boundaries implemented
+- Implemented lazy loading, react content loader
+- Using chart.js added beautiful graph components
+- Deployed to vercel
 
 
-Deploy to vercel [click here]("https://coin-gecko-crypto-tracker-nu.vercel.app")
+![image](https://github.com/user-attachments/assets/eaf05349-22d1-4d95-be09-d9ad31442c19)
+
+![image](https://github.com/user-attachments/assets/cf62ee1c-c634-42a9-a4aa-68d424465386)
+
