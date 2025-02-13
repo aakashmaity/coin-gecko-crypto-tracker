@@ -1,6 +1,6 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { fetchCoinData } from "../../services/fetchCoinData"
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 // import { CurrencyContext } from "../../context/CurrencyContext";
 import { useNavigate } from "react-router-dom";
 import PageLoader from "../PageLoader/PageLoader"
@@ -13,17 +13,35 @@ function CoinTable() {
 
 
     const navigate = useNavigate()
-    const [page, setPage] = useState(1);
-    const { data, status, error , isLoading} = useQuery({
-        queryKey: ['coins', page, currency],   
-        queryFn: () => fetchCoinData(page, currency),
-        // retry: 2,
-        retryDelay: 1000,
-        staleTime: 1000 * 60 * 2  
+
+    const { data, isLoading, isError, error, status, hasNextPage, fetchNextPage } = useInfiniteQuery({
+        queryKey: ['coins', currency],
+        queryFn: ({ pageParam }) => fetchCoinData(pageParam, currency),
+        initialPageParam: 1,
+        getNextPageParam: (lastPage, pages) => {
+            return lastPage.length >= 10 ? pages.length + 1 : undefined
+        },
     })
-    
-    // ['coins', page, currency,....] based on any of these parameters changes queryFn function will be called
-    // stealTime : how long you're expecting your data is fresh or not updated anything till 2 minutes 
+
+
+    // Implement infinite scroll
+    function handleScroll() {
+        const bottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 1;
+        
+        if (bottom) {
+            fetchNextPage()
+        }
+    }
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+
+        // cleanup function
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [])
+
+    // console.log("dataaa", data)
+
+
 
     function handleCoinRedirect(id) {
         navigate(`/details/${id}`)
@@ -45,34 +63,37 @@ function CoinTable() {
 
 
             <div className="flex flex-col w-[80vw] mx-auto">
-                {isLoading && <PageLoader/>}
-                {data && data.map((coin) => {
-                    return (
-                        <div onClick={() =>handleCoinRedirect(coin.id)} key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 items-center justify-between">
-                            <div className="flex items-center justify-start gap-3 basis-[35%]">
-                                <div className="w-[5rem] h-[5rem]">
-                                    <img src={coin.image} className="w-full h-full" loading="lazy"/>
+                {isLoading && <PageLoader />}
+                {data && data?.pages?.map((pages, index) => (
+                    pages?.map((coin, idx) => {
+                        return (
+                            <div onClick={() => handleCoinRedirect(coin?.id)} key={`${coin?.id}-${idx}`} className="w-full bg-transparent text-white flex py-4 px-2 items-center justify-between">
+                                <div className="flex items-center justify-start gap-3 basis-[35%]">
+                                    <div className="w-[5rem] h-[5rem]">
+                                        <img src={coin?.image} className="w-full h-full" loading="lazy" />
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <div className="text-xl">{coin?.name}</div>
+                                        <div className="text-md">{coin?.symbol}</div>
+                                    </div>
                                 </div>
-                                <div className="flex flex-col">
-                                    <div className="text-xl">{coin.name}</div>
-                                    <div className="text-md">{coin.symbol}</div>
+                                <div className="basis-[25%]">
+                                    {coin?.current_price}
+                                </div>
+                                <div className="basis-[20%]">
+                                    {coin?.price_change_24h}
+                                </div>
+                                <div className="basis-[20%]">
+                                    {coin?.market_cap}
                                 </div>
                             </div>
-                            <div className="basis-[25%]">
-                                {coin.current_price}
-                            </div>
-                            <div className="basis-[20%]">
-                                {coin.price_change_24h}
-                            </div>
-                            <div className="basis-[20%]">
-                                {coin.market_cap}
-                            </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })
+                ))}
+
             </div>
 
-            <div className="flex gap-4 justify-center items-center">
+            {/* <div className="flex gap-4 justify-center items-center">
                 <button
                     disabled={page === 1}
                     onClick={() => setPage(page - 1)}
@@ -86,7 +107,7 @@ function CoinTable() {
                 >
                     Next
                 </button>
-            </div>
+            </div> */}
 
         </div>
     )
