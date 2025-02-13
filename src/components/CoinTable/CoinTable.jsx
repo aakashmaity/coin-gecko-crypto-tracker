@@ -64,7 +64,7 @@ function CoinTable() {
 
             <div className="flex flex-col w-[80vw] mx-auto">
                 {isLoading && <PageLoader />}
-                {data && data?.pages?.map((pages, index) => (
+                {data && data?.pages?.map((pages) => (
                     pages?.map((coin, idx) => {
                         return (
                             <div onClick={() => handleCoinRedirect(coin?.id)} key={`${coin?.id}-${idx}`} className="w-full bg-transparent text-white flex py-4 px-2 items-center justify-between">
@@ -92,23 +92,6 @@ function CoinTable() {
                 ))}
 
             </div>
-
-            {/* <div className="flex gap-4 justify-center items-center">
-                <button
-                    disabled={page === 1}
-                    onClick={() => setPage(page - 1)}
-                    className="btn btn-primary btn-wide text-white text-2xl"
-                >
-                    Prev
-                </button>
-                <button
-                    onClick={() => setPage(page + 1)}
-                    className="btn btn-secondary btn-wide text-white text-2xl"
-                >
-                    Next
-                </button>
-            </div> */}
-
         </div>
     )
 }

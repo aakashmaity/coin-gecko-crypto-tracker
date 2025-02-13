@@ -12,6 +12,7 @@
 - Implemented lazy loading, react content loader
 - Using chart.js added beautiful graph components
 - Deployed to vercel
+- Implement infinite scroll using useInfiniteQuery
 
 
 ![image](https://github.com/user-attachments/assets/eaf05349-22d1-4d95-be09-d9ad31442c19)
